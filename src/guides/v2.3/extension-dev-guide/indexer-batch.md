@@ -104,6 +104,15 @@ The following examples illustrate how to define a custom batch size for configur
 </type>
 ```
 
+Batch Management for `catalog_category_product` is configured slightly differently than above:
+```xml
+<type name="Magento\Catalog\Model\Indexer\Category\Product\Action\Full">
+    <arguments>
+        <argument name="batchRowsCount" xsi:type="number">2000</argument>
+    </arguments>
+</type>
+```
+
 ## Indexer Table Switching
 
 Magento optimizes certain indexer processes to prevent deadlocks and wait locks caused by read/write collisions on the same table. In these cases, Magento uses separate tables for performing read operations and reindexing. As a result of this table switching process, customers are not impacted when you run a full reindex. For example, when `catalog_product_price` is reindexing, customers won't be slowed down as they navigate on Categories pages, search products, or user layer navigation filters with price filters.
